@@ -40,7 +40,8 @@ const Notification = (props) => {
           </svg>
           <span className="sr-only">Info</span>
           <div>
-            <span className="font-medium">Error !</span> Something went wrong
+            <span className="font-medium">Error !</span> Something went wrong :{" "}
+            {type}
           </div>
         </div>
       )}

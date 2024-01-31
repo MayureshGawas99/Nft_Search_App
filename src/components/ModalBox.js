@@ -38,7 +38,7 @@ const ModalBox = (props) => {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`${await response.text()}`);
       }
       const result = await response.text();
       console.log(result);
@@ -48,8 +48,9 @@ const ModalBox = (props) => {
       }
     } catch (error) {
       console.error("Error:", error);
+      console.log(error.message);
       toggleModal();
-      handleNotification("error");
+      handleNotification(error.message);
     }
   }
   useEffect(() => {
