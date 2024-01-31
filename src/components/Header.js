@@ -119,7 +119,7 @@ const Header = (props) => {
                 type="button"
                 onClick={toggleModal}
               >
-                Add
+                Add NFT
               </button>
               {isModalOpen && (
                 <ModalBox
@@ -206,7 +206,7 @@ const Header = (props) => {
                   by Name
                 </label>
               </div>
-              <div className="flex items-center justify-center h-full">
+              <div className="flex items-center justify-center h-full mr-2">
                 <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
                   <input
                     checked={searchType === "Other"}
@@ -229,7 +229,7 @@ const Header = (props) => {
                 type="button"
                 onClick={toggleModal}
               >
-                Add
+                Add NFT
               </button>
               {isModalOpen && <ModalBox toggleModal={toggleModal} />}
             </div>

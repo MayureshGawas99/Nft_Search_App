@@ -43,10 +43,10 @@ const NftPage = (props) => {
                   <span className="font-bold">Contract Address: </span>
                   {selectedNft?._source.contract_address}
                 </p>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                {/* <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   <span className="font-bold">Creator: </span>
                   {selectedNft?._source.creator}
-                </p>
+                </p> */}
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   <span className="font-bold">Organization Name: </span>
                   {selectedNft?._source.orgName}
@@ -106,9 +106,9 @@ const NftPage = (props) => {
                   <th scope="col" className="px-6 py-3">
                     Trait Type
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  {/* <th scope="col" className="px-6 py-3">
                     Description
-                  </th>
+                  </th> */}
                   <th scope="col" className="px-6 py-3">
                     Value
                   </th>
@@ -128,9 +128,9 @@ const NftPage = (props) => {
                     >
                       {property?.trait_type}
                     </th>
-                    <td className="px-6 py-4">
+                    {/* <td className="px-6 py-4">
                       {property.description || "No description"}
-                    </td>
+                    </td> */}
                     <td className="px-6 py-4">{property.value}</td>
                   </tr>
                 ))}

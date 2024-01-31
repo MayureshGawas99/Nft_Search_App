@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { CovalentClient, Chains } from "@covalenthq/client-sdk";
+import Select from "react-select";
 
 const ModalBox = (props) => {
   const [nftNames, setNftNames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
-  const [selectedNftName, setSelectedNftName] = useState("eth-mainnet");
+  const [selectedNftName, setSelectedNftName] = useState(null);
   const [contractAddress, setContractAddress] = useState("");
   const { toggleModal, handleNotification } = props;
   const handleSearch = (event) => {
@@ -32,7 +33,7 @@ const ModalBox = (props) => {
       console.log(contractAddress, selectedNftName);
 
       const response = await fetch(
-        `https://elastic-backend-acknoledger.onrender.com/addData?address=${contractAddress}&chainName=${selectedNftName}`,
+        `https://elastic-backend-acknoledger.onrender.com/addData?address=${contractAddress}&chainName=${selectedNftName.value}`,
         requestOptions
       );
 
@@ -57,7 +58,12 @@ const ModalBox = (props) => {
         const client = new CovalentClient("cqt_rQ799bMWQdJg9kxct6krH6qkpRFK"); // Replace with your Covalent API key.
         const response = await client.BaseService.getAllChains();
         const allChainObjects = response.data.items;
-        let allChains = allChainObjects.map((obj) => obj.name);
+        let allChains = allChainObjects.map((obj) => {
+          let newObj = {};
+          newObj.value = obj.name;
+          newObj.label = obj.name;
+          return newObj;
+        });
         setNftNames(allChains);
         setFilteredOptions(allChains);
         console.log(allChains);
@@ -127,31 +133,7 @@ const ModalBox = (props) => {
               </div>
 
               <div className="col-span-2">
-                <label
-                  htmlFor="category"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Chain Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={searchTerm}
-                  onChange={handleSearch}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 mb-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                />
-                <select
-                  id="category"
-                  value={selectedNftName}
-                  onChange={handleSelectChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                >
-                  {filteredOptions.map((option, index) => (
-                    <option key={index} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+                <Select onChange={setSelectedNftName} options={nftNames} />
               </div>
             </div>
             <button
