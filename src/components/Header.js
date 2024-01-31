@@ -79,7 +79,7 @@ const Header = (props) => {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-center mr-2">
               <div className="flex items-center justify-center h-full">
                 <label className=" text-sm font-medium text-gray-900 dark:text-gray-300">
                   <input
