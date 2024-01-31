@@ -38,7 +38,9 @@ function App() {
           if (searchType === "by Name") {
             setLoading(true);
             const response = await fetch(
-              `https://elastic-backend-acknoledger.onrender.com/getData?nftName=${searchQuery}`,
+              `https://elastic-backend-acknoledger.onrender.com/getData?nftName=${encodeURIComponent(
+                searchQuery
+              )}`,
               requestOptions
             );
             if (!response.ok) {
@@ -51,7 +53,9 @@ function App() {
           } else {
             setLoading(true);
             const response = await fetch(
-              `https://elastic-backend-acknoledger.onrender.com/getData?other=${searchQuery}`,
+              `https://elastic-backend-acknoledger.onrender.com/getData?other=${encodeURIComponent(
+                searchQuery
+              )}`,
               requestOptions
             );
             if (!response.ok) {
