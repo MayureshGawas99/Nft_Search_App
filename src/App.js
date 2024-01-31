@@ -13,6 +13,7 @@ import Notification from "./components/Notification";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(false);
   const [receivedData, setReceivedData] = useState([]);
   const [searchType, setSearchType] = useState("by Name");
   const [showNotification, setShowNotification] = useState(null);
@@ -35,6 +36,7 @@ function App() {
       try {
         if (searchQuery) {
           if (searchType === "by Name") {
+            setLoading(true);
             const response = await fetch(
               `https://elastic-backend-acknoledger.onrender.com/getData?nftName=${searchQuery}`,
               requestOptions
@@ -45,7 +47,9 @@ function App() {
             const result = await response.json();
             console.log(result?.hits?.hits);
             setReceivedData(result?.hits?.hits);
+            setLoading(false);
           } else {
+            setLoading(true);
             const response = await fetch(
               `https://elastic-backend-acknoledger.onrender.com/getData?other=${searchQuery}`,
               requestOptions
@@ -56,6 +60,7 @@ function App() {
             const result = await response.json();
             console.log(result?.hits?.hits);
             setReceivedData(result?.hits?.hits);
+            setLoading(false);
           }
         } else {
           setReceivedData([]);
@@ -79,16 +84,16 @@ function App() {
       {showNotification && <Notification type={showNotification} />}
 
       <Routes>
-        <Route path="/" element={<HomePage receivedData={receivedData} />} />
+        <Route
+          path="/"
+          element={<HomePage receivedData={receivedData} loading={loading} />}
+        />
         <Route path="/addnft" element={<AddNftPage />} />
         <Route
           path="/nft/:nftName"
           element={<NftPage receivedData={receivedData} />}
         />
       </Routes>
-      {/* <NftCard /> */}
-      {/* {searchQuery} */}
-      {/* {JSON.stringify(receivedData, null, 2)} */}
     </div>
   );
 }
