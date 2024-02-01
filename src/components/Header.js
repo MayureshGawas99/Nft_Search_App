@@ -164,7 +164,7 @@ const Header = (props) => {
           }`}
           id="navbar-search"
         >
-          <div className="relative mt-3 md:hidden flex gap-2 w-full justify-between">
+          <div className="relative mt-3 md:hidden flex gap-2 w-full justify-between items-center">
             <div className="w-full">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg
@@ -206,7 +206,7 @@ const Header = (props) => {
                   by Name
                 </label>
               </div>
-              <div className="flex items-center justify-center h-full mr-2">
+              <div className="flex items-center justify-center h-full ">
                 <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
                   <input
                     checked={searchType === "Other"}
@@ -221,7 +221,7 @@ const Header = (props) => {
                 </label>
               </div>
             </div>
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-end h-full w-full">
               <button
                 data-modal-target="crud-modal"
                 data-modal-toggle="crud-modal"

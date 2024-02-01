@@ -9,11 +9,15 @@ const NftCard = (props) => {
       <a href="#">
         <img
           className="rounded-t-lg "
-          src={nftData?._source.imageURL}
+          src={
+            nftData?._source?.imageURL ||
+            "https://res.cloudinary.com/djuseai07/image/upload/v1706781066/njvqqes5lysniv5qqrbq.jpg"
+          }
           alt="Nft Image"
+          loading="lazy"
           onError={(e) => {
             e.target.src =
-              "https://ipfs.nftstars.app/ipfs/QmcWc9k7JGQuRoKGKBzUqhqD8mWv1oafApN4YV1HLcW1GN";
+              "https://res.cloudinary.com/djuseai07/image/upload/v1706781066/njvqqes5lysniv5qqrbq.jpg";
           }}
         />
       </a>

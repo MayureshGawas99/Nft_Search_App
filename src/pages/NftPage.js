@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 const NftPage = (props) => {
   const { receivedData } = props;
+  const defaultImg =
+    "https://res.cloudinary.com/djuseai07/image/upload/v1706781066/njvqqes5lysniv5qqrbq.jpg";
   const { nftName } = useParams();
   const [selectedNft, setSelectedNft] = useState(null);
   const navigate = useNavigate();
@@ -25,11 +27,10 @@ const NftPage = (props) => {
             <div className="w-100 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
               <img
                 className="object-cover rounded-lg h-96 md:h-auto md:w-64  md:rounded-lg"
-                src={selectedNft?._source?.imageURL}
+                src={selectedNft?._source?.imageURL || defaultImg}
                 alt="Nft Image"
                 onError={(e) => {
-                  e.target.src =
-                    "https://ipfs.nftstars.app/ipfs/QmcWc9k7JGQuRoKGKBzUqhqD8mWv1oafApN4YV1HLcW1GN";
+                  e.target.src = defaultImg;
                 }}
               />
               <div className="flex flex-col justify-between p-4 leading-normal flex-grow ">
@@ -52,7 +53,7 @@ const NftPage = (props) => {
                   {selectedNft?._source.orgName}
                 </p>
                 <div className="flex gap-3 justify-end">
-                  {selectedNft?._source.social.discord && (
+                  {selectedNft?._source?.social?.discord && (
                     <Link to={selectedNft?._source.social.discord}>
                       <svg
                         className="h-7 w-7"
@@ -66,7 +67,7 @@ const NftPage = (props) => {
                       </svg>
                     </Link>
                   )}
-                  {selectedNft?._source.social.twitter && (
+                  {selectedNft?._source?.social?.twitter && (
                     <Link to={selectedNft?._source.social.twitter}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +79,7 @@ const NftPage = (props) => {
                       </svg>
                     </Link>
                   )}
-                  {selectedNft?._source.social.website && (
+                  {selectedNft?._source?.social?.website && (
                     <Link to={selectedNft?._source.social.website}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
